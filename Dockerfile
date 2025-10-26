@@ -30,6 +30,7 @@ RUN ./makedeb.sh
 FROM debian:bookworm-slim AS scanservjs-base
 RUN apt-get update \
   && apt-get install -yq \
+    curl \
     nodejs \
     adduser \
     imagemagick \
