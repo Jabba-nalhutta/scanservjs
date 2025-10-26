@@ -30,7 +30,6 @@ RUN ./makedeb.sh
 FROM debian:bookworm-slim AS scanservjs-base
 RUN apt-get update \
   && apt-get install -yq \
-    curl \
     nodejs \
     adduser \
     imagemagick \
@@ -82,6 +81,8 @@ ENTRYPOINT [ "/entrypoint.sh" ]
 COPY --from=scanservjs-build "/app/debian/scanservjs_*.deb" "/"
 RUN apt-get install ./scanservjs_*.deb \
   && rm -f ./scanservjs_*.deb
+
+RUN apt-get install curl
 
 WORKDIR /usr/lib/scanservjs
 
